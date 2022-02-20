@@ -11,10 +11,10 @@ export function AppRoutes() {
   return (
     <Router>
       <Routes>
-        <Route key={'first-layer'} path={'/'} element={<Home layer={firstLayer.key}/>} />
+        <Route key={'first-layer'} path={''} element={<Home layer={firstLayer.key}/>} />
         {layers.map(layer => {
           const { key } = layer
-          return <Route key={key} path={`/${key}`} element={<Home layer={key}/>} />
+          return <Route key={key} path={`${key}`} element={<Home layer={key}/>} />
         })}
       </Routes>
     </Router>
