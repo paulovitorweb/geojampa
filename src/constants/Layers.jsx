@@ -20,7 +20,7 @@ export default [
     pathToFetch: 'https://raw.githubusercontent.com/paulovitorweb/geodata-jp/main/data/rios.geojson'
   },
   {
-    key: 'cloviario',
+    key: 'cicloviario',
     name: 'Cicloviário',
     pathToFetch: 'https://raw.githubusercontent.com/paulovitorweb/geodata-jp/main/data/ciclo.geojson'
   },
