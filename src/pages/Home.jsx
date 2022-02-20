@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Map from '../components/Map'
+import Config from '../constants/Config'
 import layers from '../constants/Layers'
 
 
@@ -42,7 +43,7 @@ export function Home(props) {
         <Offcanvas.Body>
           <ListGroup variant="flush">
             {layers.map(layer => {
-              return <ListGroup.Item action href={'/' + layer.key} key={layer.key}> {layer.name}</ListGroup.Item>
+              return <ListGroup.Item action href={Config.baseRoute + '/' + layer.key} key={layer.key}> {layer.name}</ListGroup.Item>
             })}
           </ListGroup>
         </Offcanvas.Body>
