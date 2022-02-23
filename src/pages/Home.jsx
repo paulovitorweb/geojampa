@@ -10,10 +10,10 @@ import layers from '../constants/Layers'
 export function Home() {
   const firstLayer = layers[0]
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const getLayerObject = key => {
     return layers.filter(l => l.key === key)[0]

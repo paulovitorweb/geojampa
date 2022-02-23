@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
 
 const zoom = 13
@@ -17,11 +17,12 @@ const tileLayer = {
     contributors'
   `
 }
-const mapCenter = [-7.131098, -34.851901]
 
 export default function Map(props) {
-
+  const [center, ] = useState([-7.131098, -34.851901])
+  const [zoom, ] = useState(13)
   const [geoData, setGeoData] = useState()
+  const GeoJSONEL = useRef(null)
 
   useEffect(() => {
     fetch(props.layer.pathToFetch).then(r => r.json())
@@ -29,10 +30,43 @@ export default function Map(props) {
       .catch(e => console.log(e))
   }, [])
 
+  const highlightFeature = event => {
+    var layer = event.target
+    layer.setStyle({
+      weight: 5,
+      color: "#666",
+      fillOpacity: 0.7
+    })
+
+    layer.bringToFront()
+  }
+
+  const resetHighlight = event => {
+    GeoJSONEL.current.resetStyle(event.target)
+  }
+
+  const bindPopupToFeature = feature => {
+    if (feature.properties) {
+      const content = Object.entries(feature.properties).map(([field, value]) => {
+        return `<p><b>${field}</b>: ${value}</p>`
+      }).join('')
+      return content
+    }
+  }
+  
+
+  const onEachFeature = (feature, layer) => {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight
+    })
+    layer.bindPopup(bindPopupToFeature(feature))
+  }
+
   return (
-    <MapContainer 
-      center={mapCenter} 
-      zoom={zoom} 
+    <MapContainer
+      center={center} 
+      zoom={zoom}
       style={style}
     >
       <TileLayer 
@@ -41,7 +75,9 @@ export default function Map(props) {
       />
       {geoData && 
         <GeoJSON 
-          data={geoData} 
+          ref={GeoJSONEL}
+          data={geoData}
+          onEachFeature={onEachFeature}
           style={
             {color: props.layer.color || 'blue'}
           }
