@@ -1,13 +1,15 @@
 import { useState } from 'react'
+import { useQuery } from '../hooks/useQuery'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Map from '../components/Map'
-import Config from '../constants/Config'
 import layers from '../constants/Layers'
 
 
-export function Home(props) {
+export function Home() {
+  const firstLayer = layers[0]
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -17,7 +19,9 @@ export function Home(props) {
     return layers.filter(l => l.key === key)[0]
   }
 
-  const layer = getLayerObject(props.layer)
+  const query = useQuery()
+
+  const layer = getLayerObject(query.get('l') || firstLayer.key) || getLayerObject(firstLayer.key)
 
   return (
     <>
@@ -43,7 +47,7 @@ export function Home(props) {
         <Offcanvas.Body>
           <ListGroup variant="flush">
             {layers.map(layer => {
-              return <ListGroup.Item action href={Config.baseRoute + '/' + layer.key} key={layer.key}> {layer.name}</ListGroup.Item>
+              return <ListGroup.Item action href={'?l=' + layer.key} key={layer.key}> {layer.name}</ListGroup.Item>
             })}
           </ListGroup>
         </Offcanvas.Body>
