@@ -1,8 +1,8 @@
 import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
 import { useState, useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
 
-const zoom = 13
 const style = {
   height: '100vh', 
   width: '100%'
@@ -53,7 +53,6 @@ export default function Map(props) {
       return content
     }
   }
-  
 
   const onEachFeature = (feature, layer) => {
     layer.on({
@@ -61,6 +60,16 @@ export default function Map(props) {
       mouseout: resetHighlight
     })
     layer.bindPopup(bindPopupToFeature(feature))
+  }
+
+  const pointToLayer = (feature, latlng) => {
+    return L.circleMarker(latlng, {
+      radius: 5,
+      fillColor: "blue",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    })
   }
 
   return (
@@ -81,6 +90,7 @@ export default function Map(props) {
           style={
             {color: props.layer.color || 'blue'}
           }
+          pointToLayer={pointToLayer}
         />
       }
     </MapContainer>
