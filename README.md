@@ -1,6 +1,6 @@
 # geojampa
 
-Uma aplicação server-side com dados geográficos da cidade de João Pessoa.
+Uma aplicação client-side com dados geográficos da cidade de João Pessoa.
 
 ![example](image/geojampa.png)
 
@@ -33,3 +33,6 @@ yarn dev
 - Parques
 - Praças
 - Rios
+- Escolas públicas
+- Comunidades
+- Área rural
