@@ -6,11 +6,12 @@ Uma aplicação client-side com dados geográficos da cidade de João Pessoa.
 
 Projeto feito apenas para estudo.
 
+[Demonstração](https://paulovitorweb.github.io/geojampa).
+
 ## Tecnologias
 
 - React
 - Leaflet
-- Bootstrap
 
 ## Instalação
 
