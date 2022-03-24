@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 350px 1fr;
+}
+
+aside {
+    height: 100vh;
+    background: #fff;
+    padding: 6px 24px;
+    display: grid;
+    grid-template-rows: 180px 1fr 70px;
+}
+
+aside .app-identity {
+    padding-right: 8px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+aside .app-identity h1 {
+    cursor: default;
+}
+
+aside .menu-layers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-content: flex-start;
+    justify-content: center;
+    overflow: scroll;
+}
+
+aside .menu-layers a {
+    text-decoration: none;
+}
+
+aside .menu-layers .card-layer {
+    color: #869198;
+    width: 115px;
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: #F5F8FA;
+    border: 1px dashed #96D2F0;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+aside .menu-layers .card-layer:hover {
+    color: #000;
+    border: 1px solid #96D2F0;
+}
+
+aside .menu-layers .card-layer i {
+    font-size: 30px;
+    height: 50px;
+    padding: 30px 20px 0px 20px;
+}
+
+aside .menu-layers .card-layer span {
+    align-self: center;
+    padding-top: 20px;
+    line-height: 18px;
+}
+
+aside .more-info {
+    padding-right: 8px;
+    font-size: 12px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+aside .more-info div {
+    text-align: center;
+}
+
+aside .more-info a {
+    text-decoration: none;
+    color: #000;
+}
+
+aside .more-info a:hover {
+    text-decoration: underline;
+}
+
+.leaflet-container {
+    height: 100%;
+}
+
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+.menu-layers {
+  scrollbar-width: auto;
+  scrollbar-color: #869198 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.menu-layers::-webkit-scrollbar {
+  width: 8px;
+}
+
+.menu-layers::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.menu-layers::-webkit-scrollbar-thumb {
+  background-color: #869198;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}

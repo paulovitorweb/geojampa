@@ -2,25 +2,14 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { useState, useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
+import Config from '../constants/Config'
 
-const style = {
-  height: '100vh', 
-  width: '100%'
-}
-const tileLayer = {
-  url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  attribution: `
-    &copy; 
-    <a href="https://www.openstreetmap.org/copyright">
-      OpenStreetMap
-    </a> 
-    contributors'
-  `
-}
 
 export default function Map(props) {
-  const [center, ] = useState([-7.131098, -34.851901])
-  const [zoom, ] = useState(13)
+  const {tileLayerUrl, attribution} = Config.map
+
+  const [center, ] = useState([-7.145098, -34.851901])
+  const [zoom, ] = useState(12)
   const [geoData, setGeoData] = useState()
   const GeoJSONEL = useRef(null)
 
@@ -76,11 +65,10 @@ export default function Map(props) {
     <MapContainer
       center={center} 
       zoom={zoom}
-      style={style}
     >
       <TileLayer 
-        url={tileLayer.url} 
-        attribution={tileLayer.attribution}
+        url={tileLayerUrl} 
+        attribution={attribution}
       />
       {geoData && 
         <GeoJSON 
